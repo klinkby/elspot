@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json.schemastore.org/proxies",
+    "proxies": {
+        "api-spot": {
+            "matchCondition": {
+                "route": "/api/spot"
+            },
+            "backendUri": "https://api.energidataservice.dk/datastore_search_sql?sql=select%20%22HourUTC%22%2C%20%22PriceArea%22%2C%20%22SpotPriceEUR%22%20from%20%22elspotprices%22%20where%20%22PriceArea%22%20like%20'DK%25'%20and%20%22HourUTC%22%20%3E%20((now()%20at%20time%20zone%20'UTC')%20-%20interval%20'1%20hours')%20order%20by%20%22HourUTC%22%20%2C%20%22PriceArea%22",
+            "requestOverrides": {
+                "backend.request.method": "get"
+            }
+        }
+    }
+}
